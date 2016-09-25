@@ -35,6 +35,7 @@ int main() {
 void print_in_decimal(char* color) {
     size_t color_len = strlen(color);
 
+    // strlen("#fbff4d") -> HEX_COLOR_LEN (7)
     if(color_len != HEX_COLOR_LEN) {
         printf("%s is an invalid hexademical color.\n", color);
         exit(1);
@@ -43,10 +44,11 @@ void print_in_decimal(char* color) {
     int rgb[3], j = 0;
     char hex[HEX_VALUE_LEN];
 
+    // "#fbff4d" -> start iterating after "#"
     for(int i = 1; i < color_len; i += 2) {
-        sprintf(hex, "%c%c", color[i], color[i + 1]);
+        sprintf(hex, "%c%c", color[i], color[i + 1]); // hex = "ff"
 
-        rgb[j] = (int)strtol(hex, NULL, 16);
+        rgb[j] = (int)strtol(hex, NULL, 16); // "ff" -> 255
         j++;
     }
 
@@ -56,21 +58,23 @@ void print_in_decimal(char* color) {
 void print_in_hexademical(char* color) {
     int rgb_value;
     char result[HEX_COLOR_LEN], hex[HEX_VALUE_LEN];
-    char* token = strtok(color, ", ");
 
-    strcat(result, "#");
+    char* token = strtok(color, ", "); // "251, 255, 77" -> "251"
+
+    strcat(result, "#"); // #...
+
     while(token != NULL) {
-        rgb_value = (int)strtol(token, NULL, 10);
+        rgb_value = (int)strtol(token, NULL, 10); // "255" -> 255 [int]
 
         if(rgb_value < MIN_RGB_VALUE || rgb_value > MAX_RGB_VALUE) {
             printf("Invalid rgb value: %d\n", rgb_value);
             exit(1);
         }
 
-        sprintf(hex, "%02x", rgb_value);
-        strcat(result, hex);
+        sprintf(hex, "%02x", rgb_value); // 255 -> "ff"
+        strcat(result, hex); // #ff...
 
-        token = strtok(NULL, ", ");
+        token = strtok(NULL, ", "); // "255, 77" -> "255"...
     }
 
     printf("%s\n", result);

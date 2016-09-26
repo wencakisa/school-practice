@@ -18,8 +18,8 @@ int main() {
 }
 
 char* to_binary(int n) {
-    char binary[MAX_LEN];
-
+    char* binary = malloc(sizeof(char) * MAX_LEN);
+    sprintf(binary, "%02x", n);
     return binary;
 }
 

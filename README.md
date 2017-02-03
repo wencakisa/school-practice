@@ -1,2 +1,2 @@
-# Software-Assurance-old
-Homeworks for ELSYS' Software Assurance (2015/2016) [ just for practice ]
+# school-practice
+Tasks for my programming classes in school. Just for practice.

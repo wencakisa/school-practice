@@ -51,8 +51,7 @@ int str_to_int(char *str) {
     int result = 0;
     size_t len = strlen(str);
     
-    int multiplier = get_multiplier(len);
-    
+    int multiplier = get_multiplier(len);    
     for(size_t i = 0; i < len; i++, multiplier /= 10)
         result += char_to_int(str[i]) * multiplier;
 

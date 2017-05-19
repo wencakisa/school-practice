@@ -59,19 +59,22 @@ void resize_stack(stack_t *stack) {
     stack->data = (int*) realloc(stack->data, stack->capacity * sizeof(int));
 }
 
-void copy_array(int *src, int *dest, int size) {
+int* copy_array(int *array, int size) {
+    int *result = calloc(size, sizeof(int));
+
     for (size_t i = 0; i < size; i++) {
-        dest[i] = src[i];
+        result[i] = array[i];
     }
+
+    return result;
 }
 
 stack_t copy_stack(stack_t stack) {
     stack_t result = {
+        .data = copy_array(stack.data, size(stack)),
         .size = size(stack),
         .capacity = stack.capacity
     };
-
-    copy_array(stack.data, result.data, size(result));
 
     return result;
 }

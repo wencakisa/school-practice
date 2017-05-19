@@ -16,7 +16,7 @@ int top(stack_t);
 void push(stack_t*, int);
 int pop(stack_t*);
 void resize_stack(stack_t*);
-void copy_array(int*, int*, int);
+int* copy_array(int*, int);
 stack_t copy_stack(stack_t);
 void print_array(int*, int);
 void print_stack(stack_t);

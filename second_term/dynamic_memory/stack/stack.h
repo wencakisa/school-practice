@@ -7,6 +7,7 @@ typedef struct stack_t {
     int capacity;
 } stack_t;
 
+stack_t create_stack(int*, int, int);
 stack_t init_stack(int);
 void destroy_stack(stack_t*);
 int size(stack_t);

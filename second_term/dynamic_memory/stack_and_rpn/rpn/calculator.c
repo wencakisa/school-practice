@@ -46,15 +46,11 @@ int do_operation(stack_t *stack, char operator) {
 }
 
 int solve(char *rpn_exp) {
-    size_t len = strlen(rpn_exp);
-
-    char exp_copy[len];
-    strcpy(exp_copy, rpn_exp);
-
-    stack_t operands = init_stack(len / 2);
+    stack_t operands = init_stack(strlen(rpn_exp) / 2);
     int result = top(operands);
 
-    char *token = strtok(exp_copy, DELIMITER);
+    char *token = strtok(rpn_exp, DELIMITER);
+
     while (token != NULL) {
         if (is_operand(token)) {
             push(&operands, strtol(token, NULL, 10));
@@ -74,9 +70,12 @@ int solve(char *rpn_exp) {
 }
 
 rpn_calculator_t init_calculator(char *expression) {
+    char exp_copy[strlen(expression)];
+    strcpy(exp_copy, expression);
+
     rpn_calculator_t calculator = {
         .expression = expression,
-        .result = solve(expression)
+        .result = solve(exp_copy)
     };
 
     return calculator;

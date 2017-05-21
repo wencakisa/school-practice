@@ -4,13 +4,13 @@
 #include "stack.h"
 
 stack_t create_stack(int *initial_data, int initial_size, int initial_capacity) {
-    stack_t result = {
+    stack_t stack = {
         .data = initial_data,
         .size = initial_size,
         .capacity = initial_capacity
     };
 
-    return result;
+    return stack;
 }
 
 stack_t init_stack(int initial_capacity) {

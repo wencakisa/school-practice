@@ -5,5 +5,5 @@ This is a Stack data structure implementation in C, used then to make a RPN calc
 
 ### Compiling
 ```
-gcc -Wall -pedantic-errors -std=c11 main.c stack/stack.c rpn/calculator.c -lm
+gcc -Wall -pedantic-errors -std=c11 main.c stack.c calculator.c -lm
 ```

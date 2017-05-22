@@ -6,7 +6,8 @@ typedef struct node_t {
     struct node_t *next;
 } node_t;
 
-node_t* node_init(int);
+node_t* node_init(int, node_t*);
+node_t* head_init(int);
 int get_value(node_t*);
 
 #endif

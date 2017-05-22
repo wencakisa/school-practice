@@ -5,7 +5,7 @@
 
 list_t list_init(int value) {
     list_t result = {
-        .head = node_init(value),
+        .head = head_init(value),
         .size = 1
     };
 
@@ -46,14 +46,13 @@ void add(list_t *list, int value, int index) {
         current = current->next;
     }
 
-    current->next = node_init(value);
+    current->next = head_init(value);
     list->size++;
 }
 
 void add_first(list_t *list, int value) {
-    node_t *new_node = node_init(value);
+    node_t *new_node = node_init(value, list->head);
 
-    new_node->next = list->head;
     list->head = new_node;
     list->size++;
 }

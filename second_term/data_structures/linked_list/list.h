@@ -9,6 +9,7 @@ typedef struct list_t {
 } list_t;
 
 list_t list_init();
+void list_destroy(list_t*);
 
 int get_size(list_t);
 int is_empty(list_t);
@@ -20,10 +21,11 @@ node_t* get_last(list_t);
 
 void add_first(list_t*, int);
 void add_last(list_t*, int);
+void set(list_t*, int, int);
 
+int poll(list_t*, node_t**, node_t**);
 int poll_first(list_t*);
 int poll_last(list_t*);
-void set(list_t*, int, int);
 
 char* get_format_specifier(node_t*);
 void print_node(node_t*);

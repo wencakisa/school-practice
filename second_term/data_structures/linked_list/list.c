@@ -5,8 +5,8 @@
 
 list_t list_init(int value) {
     list_t result = {
-        .head = head_init(value),
-        .size = 1
+        .head = NULL,
+        .size = 0
     };
 
     return result;
@@ -17,7 +17,11 @@ int get_size(list_t list) {
 }
 
 int is_empty(list_t list) {
-    return get_size(list) == 1;
+    return get_size(list) == 0;
+}
+
+int is_valid_index(list_t list, int index) {
+    return index < get_size(list);
 }
 
 node_t* get(list_t list, int index) {
@@ -36,29 +40,19 @@ node_t* get_first(list_t list) {
 }
 
 node_t* get_last(list_t list) {
-    return get(list, get_size(list));
-}
-
-void add(list_t *list, int value, int index) {
-    node_t *current = list->head;
-
-    for (size_t i = 0; i < index; i++) {
-        current = current->next;
-    }
-
-    current->next = head_init(value);
-    list->size++;
+    return get(list, get_size(list) - 1);
 }
 
 void add_first(list_t *list, int value) {
-    node_t *new_node = node_init(value, list->head);
-
-    list->head = new_node;
+    list->head = node_init(value, list->head);
     list->size++;
 }
 
 void add_last(list_t *list, int value) {
-    add(list, value, get_size(*list) - 1);
+    node_t *last = get_last(*list);
+
+    last->next = head_init(value);
+    list->size++;
 }
 
 int poll_first(list_t *list) {
@@ -67,9 +61,28 @@ int poll_first(list_t *list) {
     if (!is_empty(*list)) {
         node_t *next_node = list->head->next;
 
-        result = list->head->value;
+        result = get_value(list->head);
         free(list->head);
         list->head = next_node;
+        list->size--;
+    }
+
+    return result;
+}
+
+int poll_last(list_t *list) {
+    int result = -1;
+
+    if (!is_empty(*list)) {
+        node_t *current = list->head;
+
+        for (size_t i = 1; i < get_size(*list) - 1; i++) {
+            current = current->next;
+        }
+
+        result = get_value(current->next);
+        free(current->next);
+        current->next = NULL;
         list->size--;
     }
 

@@ -14,8 +14,10 @@ typedef struct rpn_calculator_t {
 
 int is_operand(char*);
 int is_operator(char*);
+
 int do_operation(stack_t*, char);
 int solve(char*);
+
 void set_expression(rpn_calculator_t*, char*);
 rpn_calculator_t init_calculator(char*);
 int get_result(rpn_calculator_t);

@@ -17,16 +17,23 @@ int main() {
     poll_first(&list);
     poll_first(&list);
     poll_first(&list);
-    poll_last(&list);
+    print_list(list);
+    poll_first(&list);
     print_list(list);
 
-    set(&list, 0, -1);
-    set(&list, get_size(list) - 1, 4);
+    set_first(&list, -1);
+    set(&list, 1, -2);
+    set_last(&list, -3);
     print_list(list);
+
+    list_t copy = list_copy(list);
 
     list_destroy(&list);
     print_list(list);
 
+    print_list(copy);
+    list_destroy(&copy);
+    print_list(copy);
 
     return 0;
 }
